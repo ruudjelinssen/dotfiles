@@ -33,6 +33,19 @@ Plug 'airblade/vim-gitgutter'               " Adds symbols for changed lines
 Plug 'vim-airline/vim-airline'              " Airline
 Plug 'vim-airline/vim-airline-themes'       " Airline themes
 
+" Autocompletion
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'zchee/deoplete-clang'
+
+" Linting
+Plug 'w0rp/ale'                             " Linting
+
 call plug#end()                             " End the plugins list
 " }}}
 
@@ -142,6 +155,12 @@ let g:airline_symbols.linenr = ''
 let g:airline_symbols.whitespace = ''
 
 let g:airline#extensions#whitespace#checks = []
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+" Ale Linting
+" TODO
 
 " }}}
 
