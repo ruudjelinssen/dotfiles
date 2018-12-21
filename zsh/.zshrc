@@ -13,7 +13,7 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
 export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 
-export TERM=screen-256color
+export TERM=xterm-256color
 
 
 # Set name of the theme to load --- if set to "random", it will

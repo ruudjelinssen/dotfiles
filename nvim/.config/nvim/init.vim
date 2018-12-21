@@ -41,7 +41,8 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-Plug 'zchee/deoplete-clang'
+Plug 'zchee/deoplete-clang'                 " C
+Plug 'zchee/deoplete-jedi'                  " Python
 
 " Linting
 Plug 'w0rp/ale'                             " Linting
@@ -158,6 +159,8 @@ let g:airline#extensions#whitespace#checks = []
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+
+
 
 " Ale Linting
 " TODO
