@@ -1,5 +1,11 @@
+# Go lang
+export GOROOT="/usr/lib/go"
+export GOPATH="$HOME/dev/go/"
+export GOBIN="$GOPATH/bin"
+
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
+export PATH=$PATH:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$GOROOT/bin
+
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
