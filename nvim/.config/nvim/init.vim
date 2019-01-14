@@ -163,7 +163,14 @@ let g:deoplete#enable_at_startup = 1
 
 
 " Ale Linting
-" TODO
+let g:ale_lint_on_insert_leave = 1
+let g:ale_linters = {
+\   'python': ['pylint'],   
+\}
+
+"  // Python
+let g:ale_python_auto_pipenv = 1
+
 
 " }}}
 
