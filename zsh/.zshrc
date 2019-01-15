@@ -4,8 +4,7 @@ export GOPATH="$HOME/dev/go/"
 export GOBIN="$GOPATH/bin"
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$PATH:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$GOROOT/bin
-
+export PATH=$PATH:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$GOROOT/bin:$GOBIN
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -82,45 +81,17 @@ DISABLE_AUTO_TITLE="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  golang
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# =====================================================================
-# 
-# Aliases
-#
-# =====================================================================
-
-alias cl='clear'
-alias l='ls -la'
-alias q='exit'
-function open() {
-    xdg-open "$*" &
-}
-
-# Git
-alias ga='git add -A'
-alias gp='git push'
-alias gl='git log'
-alias gs='git status'
-alias gd='git diff'
-alias gm='git commit -m'
-alias gma='git commit -am'
-alias gb='git branch'
-alias gc='git checkout'
-alias gra='git remote add'
-alias grr='git remote rm'
-alias gpu='git pull'
-alias gcl='git clone'
-alias gta='git tag -a -m'
-alias gf='git reflog'
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Import all files in $HOME/.zsh
+for f in $HOME/.zsh/*.zsh; do
+    source "$f"
+done
