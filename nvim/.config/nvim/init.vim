@@ -34,15 +34,7 @@ Plug 'vim-airline/vim-airline'              " Airline
 Plug 'vim-airline/vim-airline-themes'       " Airline themes
 
 " Autocompletion
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'zchee/deoplete-clang'                 " C
-Plug 'zchee/deoplete-jedi'                  " Python
+Plug 'Valloric/YouCompleteMe'
 
 " Linting
 Plug 'w0rp/ale'                             " Linting
@@ -159,12 +151,14 @@ let g:airline#extensions#whitespace#checks = []
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#go#gocode_binary = '$GOPATH/bin/gocode'
 
 
 
 " Ale Linting
-" TODO
-
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
 " }}}
 
 " ==============================================================================
@@ -237,6 +231,8 @@ augroup configgroup
     autocmd FocusLost * silent! wa
     " Latex
     autocmd FileType tex setlocal tw=79 wrap spell
+    " Close preview window on insert leave
+    autocmd InsertLeave * :pc
 augroup end
 
 " }}}
@@ -301,7 +297,7 @@ nnoremap <silent><C-j> <C-w>j
 nnoremap <silent><C-h> <C-w>h
 
 " NerdTree
-nmap <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
 
 " Fuzzy
 nmap <silent> <leader>f :GFiles<CR>
