@@ -39,6 +39,9 @@ Plug 'Valloric/YouCompleteMe'
 " Linting
 Plug 'w0rp/ale'                             " Linting
 
+" Proverif plugin
+Plug '~/dev/proverif-pi-vim'                " Proverif 
+
 call plug#end()                             " End the plugins list
 " }}}
 
@@ -297,7 +300,7 @@ nnoremap <silent><C-j> <C-w>j
 nnoremap <silent><C-h> <C-w>h
 
 " NerdTree
-nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 " Fuzzy
 nmap <silent> <leader>f :GFiles<CR>
