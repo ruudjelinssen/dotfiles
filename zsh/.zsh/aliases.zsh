@@ -35,7 +35,7 @@ function irc() {
         CONN=$(nmcli connection | grep vpn | cut -d " " -f1)
         if [[ -z $CONN ]]; then
             echo "No VPN connection available. Connect manually.";
-            exit 1
+            return;
         fi
         nmcli connection up $CONN
         ssh weechat@pi.weechat
