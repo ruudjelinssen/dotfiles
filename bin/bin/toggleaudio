@@ -1,4 +1,0 @@
-#!/bin/bash
-
-ACTIVE=`pactl list sinks | grep "Active Port" | cut -d ' ' -f3`
-echo $ACTIVE
