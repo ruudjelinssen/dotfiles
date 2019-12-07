@@ -15,7 +15,7 @@ for d in `ls -d */`; do
 done
 
 echo "Installing neovim plugins"
-nvim +PlugInstall +qa
+nvim +PlugInstall +UpdateRemotePlugins +qa
 
 echo "\n\nInstalling Tmux Plugin Manager\n"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
