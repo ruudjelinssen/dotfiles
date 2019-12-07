@@ -26,6 +26,7 @@ export TERM=xterm-256color
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="bureau"
+PROMPT=">>"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -83,6 +84,7 @@ plugins=(
   fzf
   git
   golang
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh

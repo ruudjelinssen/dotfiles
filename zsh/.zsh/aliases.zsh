@@ -4,12 +4,18 @@
 #
 # =====================================================================
 
+# Common
 alias cl='clear'
 alias l='ls -la'
 alias q='exit'
 function open() {
     xdg-open "$*" &
 }
+
+# Programs
+if type nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+fi
 
 # Git
 alias ga='git add -A'
