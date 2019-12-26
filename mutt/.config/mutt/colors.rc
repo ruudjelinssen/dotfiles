@@ -1,0 +1,16 @@
+# vim: filetype=neomuttrc
+# selected row
+color indicator brightyellow color239
+
+# attachment headers
+color   attach_headers     color241    default        "^\\[--.*--]$"
+
+# Tagged
+color index brightyellow color24 "~T"
+color index_author brightyellow color24 "~T"
+color index_subject brightcyan color24 "~T"
+
+# GPG
+color body brightcyan default "^gpg: Good signature .*"
+color body brightblack default "^gpg: "
+color body brightred red "^gpg: BAD signature from.*"
