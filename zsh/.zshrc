@@ -4,7 +4,7 @@ export GOPATH="$HOME/dev/go"
 export GOBIN="$GOPATH/bin"
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$PATH:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$GOBIN
+export PATH=$PATH:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$GOBIN:$HOME/.bin
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh

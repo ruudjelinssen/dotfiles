@@ -1,6 +1,4 @@
 #!/bin/bash
-
-
 function clearLastLine() {
     tput cuu 1 && tput el
 }
@@ -18,5 +16,5 @@ echo "Installing neovim plugins"
 nvim +PlugInstall +UpdateRemotePlugins +qa
 
 echo "\n\nInstalling Tmux Plugin Manager\n"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 2> /dev/null
 echo "Done!"
