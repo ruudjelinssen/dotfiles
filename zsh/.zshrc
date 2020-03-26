@@ -4,7 +4,7 @@ export GOPATH="$HOME/dev/go"
 export GOBIN="$GOPATH/bin"
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$PATH:$HOME/.bin:/usr/local/bin:$HOME/.local/bin:$GOBIN
+export PATH=$PATH:$HOME/.bin:/usr/local/bin:$HOME/.local/bin:$GOBIN:/snap/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -16,10 +16,7 @@ export EDITOR=nvim
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
 export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
-
-export TERM=xterm-256color
-
+source /usr/local/bin/virtualenvwrapper.sh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -28,8 +25,8 @@ export TERM=xterm-256color
 ZSH_THEME="bureau"
 
 # Beam cursor
-echo -ne '\e[5 q'                   # startup
-preexec() { echo -ne '\e[5 q' ;}    # for each prompt
+# echo -ne '\e[5 q'                   # startup
+# preexec() { echo -ne '\e[5 q' ;}    # for each prompt
 
 # Include hidden files in autocomplete:
 _comp_options+=(globdots)
@@ -96,10 +93,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Use lf to switch directories and bind it to ctrl-o
@@ -123,3 +116,8 @@ bindkey -s '^o' 'lfcd\n'  # zsh
 for f in $HOME/.zsh/*.zsh; do
     source "$f"
 done
+
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+

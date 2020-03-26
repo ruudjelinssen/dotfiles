@@ -36,3 +36,6 @@ alias gf='git reflog'
 
 # What is my ip
 alias whatsmyip='curl https://ipinfo.io/ip'
+
+# Tmux
+alias tmux='TERM=screen-256color tmux'
