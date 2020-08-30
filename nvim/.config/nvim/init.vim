@@ -34,14 +34,16 @@ Plug 'vim-airline/vim-airline'              " Airline
 Plug 'vim-airline/vim-airline-themes'       " Airline themes
 
 " Autocompletion
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'               " Youcompleteme
+
+" Auto pairs (brackets)
+ Plug 'jiangmiao/auto-pairs'                " Auto pairs
 
 " Linting
 Plug 'w0rp/ale'                             " Linting
 
-" Proverif plugin
-Plug '~/dev/proverif-pi-vim'                " Proverif 
-
+" Rust support
+Plug 'rust-lang/rust.vim'
 call plug#end()                             " End the plugins list
 " }}}
 
@@ -110,7 +112,6 @@ set linebreak                               " Wrap lines at convenient points
 let g:tex_flavor='latex'
 
 " Python paths
-let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 " }}}
 
@@ -155,8 +156,6 @@ let g:airline#extensions#whitespace#checks = []
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#go#gocode_binary = '$GOPATH/bin/gocode'
-
-
 
 " Ale Linting
 let g:ale_lint_on_insert_leave = 1
@@ -305,13 +304,16 @@ nnoremap <silent><C-h> <C-w>h
 nnoremap <C-n> :NERDTreeToggle<CR>
 
 " Fuzzy
-nmap <silent> <leader>f :GFiles<CR>
-nmap <silent> <leader>y :Files<CR>
+nmap <silent> <leader>y :GFiles<CR>
+nmap <silent> <leader>f :Files<CR>
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 " Easy align
 xmap ga <Plug>(EasyAlign)                   " Visual mode
 nmap ga <Plug>(EasyAlign)                   " Normal mode
+
+" Ycm Docs and more
+nmap <silent> <leader>d :YcmCompleter GetDoc<CR>
 
 " }}}
