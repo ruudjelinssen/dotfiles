@@ -15,9 +15,6 @@ call plug#begin('~/.config/nvim/plugged')   " Start plugin list
 " Theme
 Plug 'morhetz/gruvbox'                      " Gruvbox theme for airlin 
 
-" Nerd tree
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} " File explorer
-
 " Fuzzy
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
 Plug 'junegunn/fzf.vim'                     " Fuzzy file finder
@@ -47,7 +44,7 @@ call plug#end()                             " End the plugins list
 " ==============================================================================
 " General settings {{{
 " ==============================================================================
-set encoding=utf8                           " Use UTF encoding
+set encoding=UTF-8                          " Use UTF encoding
 set autoread                                " Reload changed files
 set backspace=indent,eol,start              " Allow backspace in insert
 set mouse=a                                 " All modes have mouse support
@@ -103,6 +100,7 @@ set completeopt=menu,preview                " How to display completion
 
 " Cursor
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,
+set guifont=FiraMono\ Nerd\ Font\ Mono:s10
 
 " Scroll offset
 set scrolloff=5                             " Offset from beginning and end 
@@ -133,6 +131,7 @@ let g:fzf_layout = { 'down' : '~25%' }      " Fuzzy layout height
 
 " Airline
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
