@@ -39,3 +39,9 @@ alias whatsmyip='curl https://ipinfo.io/ip'
 
 # Tmux
 alias tmux='TERM=screen-256color tmux'
+
+# Send to my webserver for static files
+function webshare() {
+    cp $1 ~/Nextcloud/webshare/
+    echo https://ws.stmpj.xyz/$1
+}

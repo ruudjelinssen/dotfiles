@@ -89,6 +89,8 @@ plugins=(
   fzf
   git
   golang
+  docker
+  docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -121,3 +123,5 @@ done
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
+# Kubernetes auto complete
+source <(kubectl completion zsh)
