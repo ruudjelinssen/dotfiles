@@ -33,15 +33,14 @@ Plug 'airblade/vim-gitgutter'               " Adds symbols for changed lines
 Plug 'vim-airline/vim-airline'              " Airline
 Plug 'vim-airline/vim-airline-themes'       " Airline themes
 
-" Autocompletion
-Plug 'Valloric/YouCompleteMe'
+" Autocomplete and linting
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Linting
-Plug 'w0rp/ale'                             " Linting
+" Vimtex
+Plug 'lervag/vimtex'                        " Vimtex
 
-" Proverif plugin
-Plug '~/dev/proverif-pi-vim'                " Proverif 
-
+" Rust support
+Plug 'rust-lang/rust.vim'
 call plug#end()                             " End the plugins list
 " }}}
 
@@ -59,9 +58,15 @@ set magic                                   " Magic for regex
 set clipboard=unnamed                       " Unnamed clipboard
 filetype plugin indent on                   " Reset filetype detection
 
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
 " Wildmenu commands
-set wildmenu                                " Command completion
-set wildmode=list:longest                   " Complete till longest common str
+set wildoptions=pum,tagfile
+set pumheight=10
 
 " Searching
 set hlsearch                                " Highlight search
@@ -110,7 +115,6 @@ set linebreak                               " Wrap lines at convenient points
 let g:tex_flavor='latex'
 
 " Python paths
-let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 " }}}
 
@@ -126,12 +130,6 @@ let g:gitgutter_sign_modified_removed = '▶'
 
 " FZF
 let g:fzf_layout = { 'down' : '~25%' }      " Fuzzy layout height
-
-" NERDTree
-let g:NERDTreeQuitOnOpen=0                  " Don't quit on open file
-let NERDTreeShowHidden=1                    " Show hidden files (dotfiles)
-let g:NERDTreeWinSize=31
-let NERDTreeIgnore = ['\.pyc$']
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -152,18 +150,29 @@ let g:airline_symbols.whitespace = ''
 
 let g:airline#extensions#whitespace#checks = []
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#go#gocode_binary = '$GOPATH/bin/gocode'
+" Tabline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 
-
-
-" Ale Linting
-let g:ale_lint_on_insert_leave = 1
-let g:ale_linters = {
-\   'python': ['pylint'],   
-\}
-
+" Coc
+let g:coc_global_extensions = [
+    \'coc-actions',
+    \'coc-spell-checker',
+    \'coc-explorer',
+    \'coc-pairs',
+    \'coc-snippets',
+    \'coc-highlight',
+    \'coc-markdownlint',
+    \'coc-vimtex',
+    \'coc-go',
+    \'coc-python',
+    \'coc-json', 
+    \'coc-git',
+    \'coc-clangd',
+    \'coc-rls',
+    \'coc-vimlsp',
+    \'coc-sh',
+    \]
 " }}}
 
 " ==============================================================================
@@ -261,10 +270,6 @@ noremap <silent> <leader>n :tabn<CR>        " Next tab
 nmap <leader>l :bnext<CR>
 nmap <leader>h :bprevious<CR>
 
-" Lead quit or save
-nnoremap <leader>q :q<CR>                   " Quit
-nnoremap <leader>w :w<CR>                   " Write
-
 " Scroll faster
 nnoremap <C-e> 5<C-e>                       " Scroll 5 lines when C-e
 nnoremap <C-y> 5<C-y>                       " Scroll 5 lines when C-y
@@ -277,6 +282,9 @@ noremap <esc> :set hlsearch! hlsearch?<CR>
 
 " Switch between current and last buffer
 nmap <leader>. <c-^>
+
+" Close buffer
+nmap <leader>d :bd<CR>
 
 " Moving up and down work as you would expect
 nnoremap <silent> j gj
@@ -301,17 +309,174 @@ nnoremap <silent><C-k> <C-w>k
 nnoremap <silent><C-j> <C-w>j
 nnoremap <silent><C-h> <C-w>h
 
-" NerdTree
-nnoremap <C-n> :NERDTreeToggle<CR>
-
 " Fuzzy
-nmap <silent> <leader>f :GFiles<CR>
-nmap <silent> <leader>y :Files<CR>
+nmap <silent> <leader>y :GFiles<CR>
+nmap <silent> <leader>f :Files<CR>
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 " Easy align
 xmap ga <Plug>(EasyAlign)                   " Visual mode
 nmap ga <Plug>(EasyAlign)                   " Normal mode
+
+" Tabline swithing
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+
+" }}}
+
+" ==============================================================================
+" Coc mappings {{{
+" ==============================================================================
+nmap <C-n> :CocCommand explorer<CR>
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+    inoremap <silent><expr> <c-space> coc#refresh()
+else
+    inoremap <silent><expr> <c-@> coc#refresh()
+endif
+" Use <c-space> to trigger completion.
+if has('nvim')
+	inoremap <silent><expr> <c-space> coc#refresh()
+else
+	inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+	inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+	inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<C-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<C-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Tab to trigger completion and confirm
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+" Notify coc on autopair
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+    \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " }}}
