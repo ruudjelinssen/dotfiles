@@ -1,10 +1,15 @@
 #!/bin/bash
 
+SUDO=''
+if (( $EUID != 0 )); then
+    SUDO='sudo'
+fi
+
 installubuntu () {
     echo "Installing Ubuntu dependencies"
-    sudo add-apt-repository -y ppa:neovim-ppa/stable
-    sudo apt update
-    sudo apt install -y neovim tmux git python3 python python-pip python3-pip nodejs zsh
+    $SUDO add-apt-repository -y ppa:neovim-ppa/stable
+    $SUDO apt update
+    $SUDO apt install -y neovim tmux git python3 python python-pip python3-pip nodejs zsh
 
     # Pip
     python3 -m pip install neovim
@@ -54,7 +59,7 @@ installzsh () {
     echo "Installing ZSH"
 
     echo "Setting as default shell"
-    sudo chsh -s $(which zsh)
+    $SUDO chsh -s $(which zsh)
 
     echo "Install oh my zsh"
     [ -d $HOME/.oh-my-zsh ] && rm -rf $HOME/.oh-my-zsh
