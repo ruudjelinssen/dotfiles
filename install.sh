@@ -24,7 +24,7 @@ installdeps () {
 installnvim () {
     echo "Installing neovim files"
     # backup old nvim config
-    [ -d $HOME/.config/nvim] && mv $HOME/.config/nvim $HOME/.config/nvim.old
+    [ -d $HOME/.config/nvim ] && mv $HOME/.config/nvim $HOME/.config/nvim.old
 
     # Link config files
     ln -s $HOME/dotfiles/nvim/ $HOME/.config/nvim
@@ -71,14 +71,16 @@ installzsh () {
     ln -s $HOME/dotfiles/zsh/.zshrc $HOME/.zshrc
     ln -s $HOME/dotfiles/zsh/.zsh $HOME/.zsh
 }
-cat << EOF
 
-           ____                  _   _     _                          
-          |  _ \ _   _ _   _  __| | | |   (_)_ __  ___ ___  ___ _ __  
-          | |_) | | | | | | |/ _` | | |   | | '_ \/ __/ __|/ _ \ '_ \ 
-          |  _ <| |_| | |_| | (_| | | |___| | | | \__ \__ \  __/ | | |
-          |_| \_\\__,_|\__,_|\__,_| |_____|_|_| |_|___/___/\___|_| |_|
-                                                                      
+base64 -d <<< cat << EOF
+ICAgICAgICAgICBfX19fICAgICAgICAgICAgICAgICAgXyAgIF8gICAgIF8gICAgICAgICAgICAg
+ICAgICAgICAgICAgIAogICAgICAgICAgfCAgXyBcIF8gICBfIF8gICBfICBfX3wgfCB8IHwgICAo
+XylfIF9fICBfX18gX19fICBfX18gXyBfXyAgCiAgICAgICAgICB8IHxfKSB8IHwgfCB8IHwgfCB8
+LyBfYCB8IHwgfCAgIHwgfCAnXyBcLyBfXy8gX198LyBfIFwgJ18gXCAKICAgICAgICAgIHwgIF8g
+PHwgfF98IHwgfF98IHwgKF98IHwgfCB8X19ffCB8IHwgfCBcX18gXF9fIFwgIF9fLyB8IHwgfAog
+ICAgICAgICAgfF98IFxfXFxfXyxffFxfXyxffFxfXyxffCB8X19fX198X3xffCB8X3xfX18vX19f
+L1xfX198X3wgfF98CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAK
 EOF
 
 # Install dependencies
