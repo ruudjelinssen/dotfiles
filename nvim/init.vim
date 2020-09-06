@@ -29,6 +29,7 @@ Plug 'airblade/vim-gitgutter'               " Adds symbols for changed lines
 " Airline
 Plug 'vim-airline/vim-airline'              " Airline
 Plug 'vim-airline/vim-airline-themes'       " Airline themes
+Plug 'ryanoasis/vim-devicons'
 
 " Autocomplete and linting
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -100,8 +101,7 @@ set completeopt=menu,preview                " How to display completion
 
 " Cursor
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,
-set guifont=FiraMono\ Nerd\ Font\ Mono:s10
-
+set guifont=PowerlineSymbols
 " Scroll offset
 set scrolloff=5                             " Offset from beginning and end 
 
@@ -113,6 +113,7 @@ set linebreak                               " Wrap lines at convenient points
 let g:tex_flavor='latex'
 
 " Python paths
+let g:python2_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 " }}}
 
@@ -131,13 +132,9 @@ let g:fzf_layout = { 'down' : '~25%' }      " Fuzzy layout height
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline_symbols = get(g:, 'airline_symbols', {})
 
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" powerline symbols
+" " powerline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = '|'
 let g:airline_right_sep = ''
@@ -152,6 +149,9 @@ let g:airline#extensions#whitespace#checks = []
 " Tabline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tab_nr_type= 2
+let g:airline#extensions#tabline#show_tab_type = 1
 
 " Coc
 let g:coc_global_extensions = [

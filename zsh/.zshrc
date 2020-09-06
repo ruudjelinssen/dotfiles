@@ -125,3 +125,6 @@ export LC_CTYPE=en_US.UTF-8
 
 # Kubernetes auto complete
 source <(kubectl completion zsh)
+
+# Rust
+source $HOME/.cargo/env
