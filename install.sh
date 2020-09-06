@@ -14,7 +14,6 @@ installubuntu () {
 
     # Pip
     python3 -m pip install neovim
-    python2 -m pip install neovim
     echo "Done installing Ubuntu dependencies"
 }
 
