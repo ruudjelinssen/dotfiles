@@ -5,7 +5,7 @@
 Easy method:
 
 ```
-curl https://raw.githubusercontent.com/ruudjelinssen/dotfiles/master/install.sh?asd123=123 | bash
+curl https://raw.githubusercontent.com/ruudjelinssen/dotfiles/master/install.sh | bash
 ```
 
 Or clone and install:
