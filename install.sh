@@ -24,10 +24,10 @@ installdeps () {
 installnvim () {
     echo "Installing neovim files"
     # backup old nvim config
-    [[ -d $HOME/.config/nvim || -L $HOME/.config/nvim ]] && mv $HOME/.config/nvim $HOME/.config/nvim.old
+    [[ -d $HOME/.config/nvim ]] && mv $HOME/.config/nvim $HOME/.config/nvim.old
 
     # Link config files
-    ln -s $HOME/dotfiles/nvim/ $HOME/.config/nvim
+    ln -sf $HOME/dotfiles/nvim/ $HOME/.config/nvim
 
     # Install plugins
     nvim --headless +PlugInstall +qa
