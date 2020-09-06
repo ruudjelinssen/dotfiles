@@ -7,9 +7,10 @@ fi
 
 installubuntu () {
     echo "Installing Ubuntu dependencies"
+    $SUDO apt install software-properties-common
     $SUDO add-apt-repository -y ppa:neovim-ppa/stable
     $SUDO apt update
-    $SUDO apt install -y neovim tmux git python3 python python-pip python3-pip nodejs zsh
+    $SUDO apt install -y neovim tmux git python3 python python3-pip nodejs zsh
 
     # Pip
     python3 -m pip install neovim
