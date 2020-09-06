@@ -65,9 +65,8 @@ installzsh () {
     [[ -d $HOME/.oh-my-zsh ]] && rm -rf $HOME/.oh-my-zsh
     git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 
-    echo "Installing spaceship theme"
-    git clone https://github.com/denysdovhan/spaceship-prompt.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship-prompt" --depth=1
-    ln -s "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship-prompt/spaceship.zsh-theme" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship.zsh-theme"
+    echo "Installing theme"
+    ln -sf zsh/inertia.zsh-theme $HOME/.oh-my-zsh/themes/inertia.zsh-theme
 
     echo "Installing ZSH plugins"
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
