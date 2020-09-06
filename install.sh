@@ -63,7 +63,7 @@ installzsh () {
 
     echo "Install oh my zsh"
     [ -d $HOME/.oh-my-zsh ] && rm -rf $HOME/.oh-my-zsh
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 
     echo "Installing dotfiles for ZSH"
     [ -f $HOME/.zshrc ] && mv $HOME/.zshrc $HOME/.zshrc.old
