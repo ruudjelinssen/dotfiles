@@ -66,7 +66,7 @@ installzsh () {
     git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 
     echo "Installing theme"
-    ln -sf zsh/inertia.zsh-theme $HOME/.oh-my-zsh/themes/inertia.zsh-theme
+    ln -sf $HOME/dotfiles/zsh/inertia.zsh-theme $HOME/.oh-my-zsh/themes/inertia.zsh-theme
 
     echo "Installing ZSH plugins"
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions

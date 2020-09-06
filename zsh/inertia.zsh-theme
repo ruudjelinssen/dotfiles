@@ -8,7 +8,7 @@ INERTIA_GIT_PROMPT_SUFFIX=""
 INERTIA_GIT_PROMPT_DIRTY=" $fg[red]"
 INERTIA_GIT_PROMPT_CLEAN=" $fg[cyan]"
 INERTIA_GIT_PROMPT_AHEAD="$fg[green]⇡"
-INERTIA_GIT_PROMPT_BEHIND="$fg[magenta]⇣"
+INERTIA_GIT_PROMPT_BEHIND="$fg[blue]⇣"
 INERTIA_GIT_PROMPT_DIVERGED="$INERTIA_GIT_PROMPT_AHEAD$INERTIA_GIT_PROMPT_BEHIND"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="$INERTIA_GIT_PROMPT_PREFIX"
@@ -38,7 +38,7 @@ inertia-ssh-prompt() {
 }
 
 inertia-level-prompt() {
-    printf "$fg_bold[magenta]»"
+    printf "$fg_bold[blue]»"
     printf "$reset_color $(inertia-ssh-prompt)$fg[white]$(inertia-pwd)"
 }
 
@@ -60,7 +60,7 @@ inertia-git-prompt() {
     if [[ "$INERTIA_SHOW_GIT_STASH" == true ]]; then
         git_stash="$(command git stash list | wc -l)"
         if [[ "$git_stash" > 0 ]]; then
-            git_stash="$reset_color$fg[magenta]+$git_stash $fg_bold[white]"
+            git_stash="$reset_color$fg[blue]+$git_stash $fg_bold[white]"
         else
             git_stash=" "
         fi
