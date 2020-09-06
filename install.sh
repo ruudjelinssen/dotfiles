@@ -18,13 +18,13 @@ installubuntu () {
 }
 
 installdeps () {
-    [  -n "$(uname -a | grep Ubuntu)" ] && installubuntu
+    [[  -n "$(uname -a | grep Ubuntu)" ]] && installubuntu
 }
 
 installnvim () {
     echo "Installing neovim files"
     # backup old nvim config
-    [ -d $HOME/.config/nvim ] && mv $HOME/.config/nvim $HOME/.config/nvim.old
+    [[ -d $HOME/.config/nvim || -L $HOME/.config/nvim ]] && mv $HOME/.config/nvim $HOME/.config/nvim.old
 
     # Link config files
     ln -s $HOME/dotfiles/nvim/ $HOME/.config/nvim
@@ -42,7 +42,7 @@ installtmux () {
     echo "Installing tmux files"
 
     # backup old tmux file
-    [ -f $HOME/.tmux.conf ] && mv $HOME/.tmux.conf $HOME/.tmux.conf.old
+    [[ -f $HOME/.tmux.conf || -L $HOME/.tmux.conf ]] && mv $HOME/.tmux.conf $HOME/.tmux.conf.old
 
     # Install new dotfile
     ln -s $HOME/dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
@@ -62,12 +62,20 @@ installzsh () {
     $SUDO chsh -s $(which zsh)
 
     echo "Install oh my zsh"
-    [ -d $HOME/.oh-my-zsh ] && rm -rf $HOME/.oh-my-zsh
+    [[ -d $HOME/.oh-my-zsh ]] && rm -rf $HOME/.oh-my-zsh
     git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 
+    echo "Installing spaceship theme"
+    git clone https://github.com/denysdovhan/spaceship-prompt.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship-prompt" --depth=1
+    ln -s "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship-prompt/spaceship.zsh-theme" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship.zsh-theme"
+
+    echo "Installing ZSH plugins"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+
     echo "Installing dotfiles for ZSH"
-    [ -f $HOME/.zshrc ] && mv $HOME/.zshrc $HOME/.zshrc.old
-    [ -d $HOME/.zsh ] && mv $HOME/.zsh $HOME/.zsh.old
+    [[ -f $HOME/.zshrc || -L $HOME/.zshrc ]] && mv $HOME/.zshrc $HOME/.zshrc.old
+    [[ -d $HOME/.zsh || -L $HOME/.zsh ]] && mv $HOME/.zsh $HOME/.zsh.old
     ln -s $HOME/dotfiles/zsh/.zshrc $HOME/.zshrc
     ln -s $HOME/dotfiles/zsh/.zsh $HOME/.zsh
 }
@@ -87,10 +95,10 @@ EOF
 installdeps
 
 # Create .config folder if it does not exist
-[ -d $HOME/.config ] || mkdir $HOME/.config
+[[ -d $HOME/.config ]] || mkdir $HOME/.config
 
 # Clone this repo if it does not exist
-[ -d $HOME/dotfiles ] || git clone https://github.com/ruudjelinssen/dotfiles $HOME/dotfiles
+[[ -d $HOME/dotfiles ]] || git clone https://github.com/ruudjelinssen/dotfiles $HOME/dotfiles
 
 # Install neovim
 which nvim > /dev/null && installnvim || (echo "ERROR: Neovim is not installed"; exit 1)

@@ -22,7 +22,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bureau"
+ZSH_THEME="spaceship"
 
 # Beam cursor
 # echo -ne '\e[5 q'                   # startup
@@ -91,7 +91,11 @@ plugins=(
   golang
   docker
   docker-compose
+  zsh-autosuggestions
 )
+
+# What suggestions to show
+export ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 source $ZSH/oh-my-zsh.sh
 
