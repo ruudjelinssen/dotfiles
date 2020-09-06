@@ -86,6 +86,9 @@ EOF
 # Install dependencies
 installdeps
 
+# Create .config folder if it does not exist
+[ -d $HOME/.config ] || mkdir $HOME/.config
+
 # Clone this repo if it does not exist
 [ -d $HOME/dotfiles ] || git clone https://github.com/ruudjelinssen/dotfiles $HOME/dotfiles
 
