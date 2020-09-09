@@ -22,7 +22,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="inertia"
+ZSH_THEME="spaceship"
 
 # Beam cursor
 # echo -ne '\e[5 q'                   # startup
