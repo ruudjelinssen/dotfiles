@@ -5,11 +5,12 @@ set encoding=UTF-8                          " Use UTF encoding
 set autoread                                " Reload changed files
 set backspace=indent,eol,start              " Allow backspace in insert
 set mouse=a                                 " All modes have mouse support
-set updatetime=25                           " Update time for example for gutter
+set updatetime=100                          " Update time for example for gutter
+set timeoutlen=300                          " Default is 1000ms
+set clipboard=unnamedplus                   " Copy between everything
 let loaded_matchparen=1                     " Avoid loading plugin  
 set history=1000                            " Set history to 1000
 set magic                                   " Magic for regex
-set clipboard=unnamed                       " Unnamed clipboard
 filetype plugin indent on                   " Reset filetype detection
 
 " TextEdit might fail if hidden is not set.
@@ -68,11 +69,8 @@ let g:tex_flavor='latex'
 " Python paths
 let g:python2_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
-" }}}
 
-" ==============================================================================
-" Indentation {{{
-" ==============================================================================
+" Indentation
 filetype indent on                          " Enable indentation plugin
 filetype plugin indent on                   " Should fix some issues
 set autoindent                              " Use auto indentation

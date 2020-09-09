@@ -20,12 +20,16 @@ Plug 'vim-airline/vim-airline-themes'       " Airline themes
 Plug 'ryanoasis/vim-devicons'
 
 " Autocomplete and linting
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': {-> coc#util#install()}}
 
 " Vimtex
 Plug 'lervag/vimtex'                        " Vimtex
 
 " Rust support
 Plug 'rust-lang/rust.vim'
+
+" Vim-which-key
+Plug 'liuchengxu/vim-which-key'
+
 call plug#end()                             " End the plugins list
 " }}}

@@ -1,7 +1,6 @@
 " ==============================================================================
 " Coc settings {{{
 " ==============================================================================
-" Coc
 let g:coc_global_extensions = [
     \'coc-actions',
     \'coc-spell-checker',
@@ -24,7 +23,6 @@ let g:coc_global_extensions = [
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -42,9 +40,15 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Notify coc on autopair
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+    \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " }}} 
 
+" ==============================================================================
 " {{{ Mappings
+" ==============================================================================
 " Open explorer
 nmap <C-n> :CocCommand explorer<CR>
 
