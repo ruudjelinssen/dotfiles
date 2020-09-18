@@ -32,28 +32,10 @@ source $HOME/.config/nvim/plugin-config/fzf.vim
 " ==============================================================================
 " Mappings {{{
 " ==============================================================================
-" Buffer list and movement
-nmap <leader>l :bnext<CR>
-nmap <leader>h :bprevious<CR>
-
-
-" Edit vimrc
-map <leader>v :e! ~/.config/nvim/init.vim<CR>
-
-
-" Switch between current and last buffer
-nmap <leader>. <c-^>
-
-" Close buffer
-nmap <leader>d :bd<CR>
-
 " Fuzzy
 nmap <silent> <leader>y :GFiles<CR>
-nmap <silent> <leader>f :Files<CR>
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
-
-
 " }}}
 
 " ==============================================================================
