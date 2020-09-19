@@ -18,6 +18,8 @@ augroup configgroup
     autocmd FileType tex setlocal tw=79 wrap spell
     " Close preview window on insert leave
     autocmd InsertLeave * :pc
+    " Reload bspwm when we are editing this file
+    autocmd! BufWritePost bspwmrc silent !%
 augroup end
 
 " }}}

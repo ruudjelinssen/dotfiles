@@ -13,21 +13,34 @@ installubuntu () {
     $SUDO apt install -y neovim tmux git python3 python python3-pip nodejs zsh yarn npm ripgrep
 
     # Pip
-    python3 -m pip install neovim
+    python3 -m pip install --user neovim
     echo "Done installing Ubuntu dependencies"
+}
+
+installfedora () {
+    echo "Installing Fedora dependencies"
+    $SUDO dnf check-update
+    $SUDO dnf upgrade python-setuptools
+    $SUDO dnf install -y neovim tmux git python3 nodejs zsh ripgrep
+    $SUDO npm install -g yarn
+
+    # Pip
+    python3 -m pip install --user neovim
+
 }
 
 installdeps () {
     [[  -n "$(uname -a | grep Ubuntu)" ]] && installubuntu
+    [[ `awk -F= '/^NAME/{print $2}' /etc/os-release` -eq "Fedora" ]] && installfedora
 }
 
 installnvim () {
     echo "Installing neovim files"
     # backup old nvim config
-    [[ -d $HOME/.config/nvim ]] && mv $HOME/.config/nvim $HOME/.config/nvim.old
+    [[ -d $HOME/.config/nvim && ! -L $HOME/.config/nvim ]] && mv $HOME/.config/nvim $HOME/.config/nvim.old
 
     # Link config files
-    ln -sf $HOME/dotfiles/nvim/ $HOME/.config/nvim
+    ln -sfn $HOME/dotfiles/nvim/ $HOME/.config/nvim
 
     # Install plugins
     nvim --headless +PlugInstall +qa
@@ -42,10 +55,10 @@ installtmux () {
     echo "Installing tmux files"
 
     # backup old tmux file
-    [[ -f $HOME/.tmux.conf || -L $HOME/.tmux.conf ]] && mv $HOME/.tmux.conf $HOME/.tmux.conf.old
+    [[ -f $HOME/.tmux.conf ]] && mv $HOME/.tmux.conf $HOME/.tmux.conf.old
 
     # Install new dotfile
-    ln -s $HOME/dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
+    ln -sf $HOME/dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
 
     # TPM
     echo "Installing Tmux Plugin Manager"
@@ -59,7 +72,7 @@ installzsh () {
     echo "Installing ZSH"
 
     echo "Setting as default shell"
-    $SUDO chsh -s $(which zsh)
+    chsh -s $(which zsh)
 
     echo "Install oh my zsh"
     [[ -d $HOME/.oh-my-zsh ]] && rm -rf $HOME/.oh-my-zsh
@@ -67,17 +80,29 @@ installzsh () {
 
     echo "Installing theme"
     git clone https://github.com/denysdovhan/spaceship-prompt.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship-prompt" --depth=1
-    ln -s "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship-prompt/spaceship.zsh-theme" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship.zsh-theme"
+    ln -sf "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship-prompt/spaceship.zsh-theme" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship.zsh-theme"
 
     echo "Installing ZSH plugins"
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 
     echo "Installing dotfiles for ZSH"
-    [[ -f $HOME/.zshrc || -L $HOME/.zshrc ]] && mv $HOME/.zshrc $HOME/.zshrc.old
-    [[ -d $HOME/.zsh || -L $HOME/.zsh ]] && mv $HOME/.zsh $HOME/.zsh.old
-    ln -s $HOME/dotfiles/zsh/.zshrc $HOME/.zshrc
-    ln -s $HOME/dotfiles/zsh/.zsh $HOME/.zsh
+    [[ -f $HOME/.zshrc && ! -L $HOME/.zshrc ]] && mv $HOME/.zshrc $HOME/.zshrc.old
+    [[ -d $HOME/.zsh && ! -L $HOME/.zsh ]] && mv $HOME/.zsh $HOME/.zsh.old
+    ln -sf $HOME/dotfiles/zsh/.zshrc $HOME/.zshrc
+    ln -sfn f$HOME/dotfiles/zsh/.zsh $HOME/.zsh
+}
+
+installbspwm () {
+    echo "Installing bspwm files"
+
+    # Install the dotfiles
+    [[ -d $HOME/.config/bspwm && ! -L $HOME/.config/bspwm ]] && mv $HOME/.config/bspwm $HOME/.config/bspwm.old
+    [[ -d $HOME/.config/sxhkd && ! -L $HOME/.config/sxhkd ]] && mv $HOME/.config/sxhkd $HOME/.config/sxhkd.old
+    ln -sfn $HOME/dotfiles/bspwm $HOME/.config/bspwm    
+    ln -sfn $HOME/dotfiles/sxhkd $HOME/.config/sxhkd
+
+    echo "Finished installing the dotfiles"
 }
 
 base64 -d <<< cat << EOF
@@ -108,3 +133,9 @@ which tmux > /dev/null && installtmux || (echo "ERROR: Tmux is not installed"; e
 
 # Install zsh
 which zsh > /dev/null && installzsh || (echo "ERROR: ZSH is not installed"; exit 1)
+
+# Install bspwm
+which bspc > /dev/null && which sxhkd > /dev/null && installbspwm || (echo "Ignoring bspwm")
+
+# Install alacritty
+ln -sfn $HOME/dotfiles/alacritty $HOME/.config/alacritty
