@@ -75,22 +75,16 @@ installzsh () {
     chsh -s $(which zsh)
 
     echo "Install oh my zsh"
-    [[ -d $HOME/.oh-my-zsh ]] && rm -rf $HOME/.oh-my-zsh
-    git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+    [[ ! -d $HOME/.oh-my-zsh ]] && git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 
-    echo "Installing theme"
-    git clone https://github.com/denysdovhan/spaceship-prompt.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship-prompt" --depth=1
-    ln -sf "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship-prompt/spaceship.zsh-theme" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship.zsh-theme"
-
-    echo "Installing ZSH plugins"
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
+    echo "Install pure prompt"
+    git clone https://github.com/sindresorhus/pure.git $HOME/dotfiles/zsh/.zsh/pure
 
     echo "Installing dotfiles for ZSH"
     [[ -f $HOME/.zshrc && ! -L $HOME/.zshrc ]] && mv $HOME/.zshrc $HOME/.zshrc.old
     [[ -d $HOME/.zsh && ! -L $HOME/.zsh ]] && mv $HOME/.zsh $HOME/.zsh.old
     ln -sf $HOME/dotfiles/zsh/.zshrc $HOME/.zshrc
-    ln -sfn f$HOME/dotfiles/zsh/.zsh $HOME/.zsh
+    ln -sfn $HOME/dotfiles/zsh/.zsh $HOME/.zsh
 }
 
 installbspwm () {
@@ -99,8 +93,10 @@ installbspwm () {
     # Install the dotfiles
     [[ -d $HOME/.config/bspwm && ! -L $HOME/.config/bspwm ]] && mv $HOME/.config/bspwm $HOME/.config/bspwm.old
     [[ -d $HOME/.config/sxhkd && ! -L $HOME/.config/sxhkd ]] && mv $HOME/.config/sxhkd $HOME/.config/sxhkd.old
+    [[ -d $HOME/.config/compton && ! -L $HOME/.config/compton ]] && mv $HOME/.config/compton $HOME/.config/compton.old
     ln -sfn $HOME/dotfiles/bspwm $HOME/.config/bspwm    
     ln -sfn $HOME/dotfiles/sxhkd $HOME/.config/sxhkd
+    ln -sfn $HOME/dotfiles/compton $HOME/.config/compton
 
     echo "Finished installing the dotfiles"
 }

@@ -16,13 +16,16 @@ export EDITOR=nvim
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
 export WORKON_HOME=~/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh 2> /dev/null
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+COLORTERM=truecolor
+fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit
+prompt pure
 
 # Beam cursor
 # echo -ne '\e[5 q'                   # startup
@@ -91,11 +94,7 @@ plugins=(
   golang
   docker
   docker-compose
-  zsh-autosuggestions
 )
-
-# What suggestions to show
-export ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -128,7 +127,7 @@ export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 # Kubernetes auto complete
-source <(kubectl completion zsh)
+which kubectl &> /dev/null && source <(kubectl completion zsh)
 
 # Rust
-source $HOME/.cargo/env
+[[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env

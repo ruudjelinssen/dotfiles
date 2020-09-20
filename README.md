@@ -12,5 +12,5 @@ Or clone and install:
 ```
 git clone https://github.com/ruudjelinssen/dotfiles ~/dotfiles
 cd ~/dotfiles
-./installsh
+./install.sh
 ```

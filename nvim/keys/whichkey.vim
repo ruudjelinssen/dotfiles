@@ -39,7 +39,9 @@ let g:which_key_map['f'] = [ ':Files'                           , 'search files'
 
 let g:which_key_map.s = {
     \ 'name': '+search',
-    \ 'g': [':GFiles',                  'git files'] 
+    \ 'g': [':GFiles',                  'git files'],
+    \ 'r': [':Rg',                      'ripgrep'],
+    \ 's': [':CocFzfList symbols',      'symbols'],
     \}
 
 " Register which key map

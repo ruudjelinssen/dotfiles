@@ -27,10 +27,18 @@ set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,
 set guifont=PowerlineSymbols
 
 " Colors
-set background=dark                         " Set background to dark
-colorscheme gruvbox                         " Use this theme
-set t_Co=256                                " Use 256 colors
+if !has('gui_running')
+  set t_Co=256
+endif
+if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
+  " screen does not (yet) support truecolor
+  set termguicolors
+endif
+
+set background=dark
+colorscheme gruvbox
+hi Normal ctermbg=NONE
 
 " Transparent background
-hi Normal ctermbg=none
+" hi Normal ctermbg=none
 " }}}

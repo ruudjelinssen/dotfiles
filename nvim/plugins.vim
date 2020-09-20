@@ -3,12 +3,13 @@
 " ==============================================================================
 call plug#begin('~/.config/nvim/plugged')   " Start plugin list
 
-" Theme
-Plug 'morhetz/gruvbox'                      " Gruvbox theme for airlin 
+" Gruvbox is nice
+Plug 'morhetz/gruvbox'
 
 " Fuzzy
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
 Plug 'junegunn/fzf.vim'                     " Fuzzy file finder
+Plug 'antoinemadec/coc-fzf'
 
 " Motions etc.
 Plug 'tpope/vim-commentary'                 " Comment out (gc)
@@ -30,6 +31,12 @@ Plug 'rust-lang/rust.vim'
 
 " Vim-which-key
 Plug 'liuchengxu/vim-which-key'
+
+" Root to .git folders
+Plug 'airblade/vim-rooter'
+
+" Quick jump to search
+Plug 'justinmk/vim-sneak'
 
 call plug#end()                             " End the plugins list
 " }}}

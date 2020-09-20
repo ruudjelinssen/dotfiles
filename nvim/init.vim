@@ -27,6 +27,7 @@ source $HOME/.config/nvim/keys/whichkey.vim
 source $HOME/.config/nvim/plugin-config/airline.vim
 source $HOME/.config/nvim/plugin-config/coc.vim
 source $HOME/.config/nvim/plugin-config/fzf.vim
+source $HOME/.config/nvim/plugin-config/sneak.vim
 " }}}
 
 " ==============================================================================
