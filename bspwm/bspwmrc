@@ -1,8 +1,6 @@
 #!/bin/sh
-sxhkd &
-compton --config $HOME/.config/compton/compton.conf &
-
-bspc monitor -d I II III IV V VI VII VIII IX X
+pkill sxhkd 2> /dev/null; sxhkd &
+pkill compton 2> /dev/null; compton --config $HOME/.config/compton/compton.conf &
 
 bspc config border_width         2
 bspc config window_gap           5
@@ -12,8 +10,14 @@ bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^2'
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
+if [[ -x $HOME/.config/bspwm/monitors ]]; then
+    source $HOME/.config/bspwm/monitors
+else
+    bspc monitor -d 1 2 3 4 5 6 7 8 9 0
+fi
+
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a Chromium desktop='^2'
+# bspc rule -a mplayer2 state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off

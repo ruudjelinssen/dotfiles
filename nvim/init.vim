@@ -24,7 +24,8 @@ source $HOME/.config/nvim/keys/mappings.vim
 source $HOME/.config/nvim/keys/whichkey.vim
 
 " Plugin configs
-source $HOME/.config/nvim/plugin-config/airline.vim
+source $HOME/.config/nvim/plugin-config/vista.vim
+source $HOME/.config/nvim/plugin-config/lightline.vim
 source $HOME/.config/nvim/plugin-config/coc.vim
 source $HOME/.config/nvim/plugin-config/fzf.vim
 source $HOME/.config/nvim/plugin-config/sneak.vim

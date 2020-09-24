@@ -15,10 +15,11 @@ Plug 'antoinemadec/coc-fzf'
 Plug 'tpope/vim-commentary'                 " Comment out (gc)
 Plug 'tpope/vim-surround'                   " Adds surround motions
 
-" Airline
-Plug 'vim-airline/vim-airline'              " Airline
-Plug 'vim-airline/vim-airline-themes'       " Airline themes
-Plug 'ryanoasis/vim-devicons'
+" Lightline
+Plug 'itchyny/lightline.vim'
+
+" Vista
+Plug 'liuchengxu/vista.vim'
 
 " Autocomplete and linting
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': {-> coc#util#install()}}

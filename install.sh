@@ -98,6 +98,7 @@ installbspwm () {
     ln -sfn $HOME/dotfiles/sxhkd $HOME/.config/sxhkd
     ln -sfn $HOME/dotfiles/compton $HOME/.config/compton
 
+
     echo "Finished installing the dotfiles"
 }
 

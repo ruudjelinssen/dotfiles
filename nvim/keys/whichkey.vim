@@ -42,6 +42,7 @@ let g:which_key_map.s = {
     \ 'g': [':GFiles',                  'git files'],
     \ 'r': [':Rg',                      'ripgrep'],
     \ 's': [':CocFzfList symbols',      'symbols'],
+    \ 'b': [':Buffers',                 'buffers'],
     \}
 
 " Register which key map
