@@ -1,4 +1,30 @@
 {
     "explorer.icon.enableNerdfont": true,
-    "coc.preferences.formatOnSaveFiletypes": ["python", "rust"]
+    "coc.preferences.formatOnSaveFiletypes": [
+        "python",
+        "rust"
+    ],
+    "diagnostic.errorSign": "",
+    "diagnostic.infoSign": "",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.hintSign": ">>",
+    "cSpell.enabledLanguageIds": [
+        "markdown",
+        "tex",
+        "txt"
+    ],
+    "coc.preferences.rootPatterns": [
+        "Cargo.toml"
+    ],
+    "languageserver": {
+        "rust": {
+            "command": "rust-analyzer",
+            "filetypes": [
+                "rust"
+            ],
+            "rootPatterns": [
+                "Cargo.toml"
+            ]
+        }
+    }
 }

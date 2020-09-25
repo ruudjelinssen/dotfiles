@@ -18,11 +18,15 @@ Plug 'tpope/vim-surround'                   " Adds surround motions
 " Lightline
 Plug 'itchyny/lightline.vim'
 
+" Better syntax highlighting
+Plug 'sheerun/vim-polyglot'
+
 " Vista
 Plug 'liuchengxu/vista.vim'
 
 " Autocomplete and linting
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': {-> coc#util#install()}}
+Plug 'josa42/vim-lightline-coc'
 
 " Vimtex
 Plug 'lervag/vimtex'                        " Vimtex
@@ -33,8 +37,14 @@ Plug 'rust-lang/rust.vim'
 " Vim-which-key
 Plug 'liuchengxu/vim-which-key'
 
+" Git commands
+Plug 'tpope/vim-fugitive'
+
 " Root to .git folders
 Plug 'airblade/vim-rooter'
+
+" Devicons
+Plug 'ryanoasis/vim-devicons'
 
 " Quick jump to search
 Plug 'justinmk/vim-sneak'

@@ -8,6 +8,11 @@ let g:fzf_action = {
 
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' }}
 
+" Same layout for coc-fzf
+let g:coc_fzf_preview = ''
+let g:coc_fzf_opts = []
+
+" Top down
 let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
 
 " Customize fzf colors to match your color scheme
