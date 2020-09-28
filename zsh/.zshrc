@@ -131,3 +131,7 @@ which kubectl &> /dev/null && source <(kubectl completion zsh)
 
 # Rust
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
+
+# Dont ask for ssh/git credentials through third party windows
+[ -n "$SSH_CONNECTION" ] && unset SSH_ASKPASS
+export GIT_ASKPASS=
