@@ -83,6 +83,8 @@ function! NearestMethodOrFunction() abort
   return l:method
 endfunction
 
-autocmd BufEnter * call vista#RunForNearestMethodOrFunction()
+autocmd BufEnter,VimEnter * call vista#RunForNearestMethodOrFunction()
+
+set statusline = 
 
 " }}}

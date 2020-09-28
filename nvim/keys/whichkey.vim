@@ -12,11 +12,11 @@ let g:which_key_map = {}
 " The separator
 let g:which_key_sep = '→'
 
+" disable floating window
+let g:which_key_use_floating_win = 0
+
 " nnoremap <leader>? :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " let g:which_key_map['?'] = 'search word'
-
-" Floating windows or just window at the bottom
-let g:which_key_use_floating_win = 0
 
 let g:which_key_map['1'] = 'which_key_ignore'
 let g:which_key_map['1'] = 'which_key_ignore'
