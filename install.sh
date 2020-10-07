@@ -42,8 +42,7 @@ installfedora () {
     # install bspwm if needed
     if [[ $INSTALL_BSPWM -eq "1" ]]; then
         echo "Installing bspwm and dependencies"
-        $SUDO dnf copr enable watersalesman/i3lock-color
-        $SUDO dnf install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh ImageMagick i3lock-color
+        $SUDO dnf install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh ImageMagick
     fi
 }
 
@@ -58,7 +57,7 @@ installdebian() {
     # install bspwm if needed
     if [[ $INSTALL_BSPWM -eq "1" ]]; then
         echo "Installing bspwm and dependencies"
-        $SUDO apt install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh
+        $SUDO apt install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh imagemagick
     fi
 }
 
