@@ -25,7 +25,7 @@ function send_notification {
 		else
 		if [  "$volume" -lt "10" ]; then
 			 icon_name="notification-audio-volume-low"
-	$DIR/notify-send.sh "$volume""     " -i "$icon_name" --replace=555 -t 2000
+	$DIR/notify-send.sh """     " -i "$icon_name" --replace=555 -t 2000
 		else
 			if [ "$volume" -lt "30" ]; then
 				icon_name="notification-audio-volume-low"
@@ -38,10 +38,9 @@ function send_notification {
 			fi
 		fi
 	fi
-	bar=$(seq -s "─" $(($volume/5)) | sed 's/[0-9]//g')
+	bar=$(seq -s "─" $(($volume/3)) | sed 's/[0-9]//g')
 	# Send the notification
 	$DIR/notify-send.sh """$bar" -i "$icon_name" -t 2000 -h int:value:"$volume" -h string:synchronous:"$bar" --replace=555
-
 }
 
 case $1 in

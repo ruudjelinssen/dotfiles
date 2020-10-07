@@ -2,14 +2,14 @@
 pkill sxhkd 2> /dev/null; sxhkd &
 pkill dunst 2> /dev/null; dunst &
 pkill compton 2> /dev/null; compton --config $HOME/.config/compton/compton.conf &
-pkill nextcloud 2> /dev/null; nextcloud --background &
+pgrep nextcloud || nextcloud --background &
+pgrep nm-applet || nm-applet &
 
 # polybar
 $HOME/.config/polybar/launch.sh
 
 bspc config border_width         2
 bspc config window_gap           5
-bspc config top_padding          0
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
@@ -27,7 +27,9 @@ else
 fi
 
 # ============ Rules ============
-# bspc rule -a Steam state=floating follow=on
+bspc rule -a Yad state=floating
+bspc rule -a Nm-connection-editor state=floating
+bspc rule -a Steam state=floating follow=on
 # bspc rule -a Chromium desktop='^2'
 # bspc rule -a mplayer2 state=floating
 # bspc rule -a Kupfer.py focus=on

@@ -102,7 +102,7 @@ installbspwm () {
     echo "Installing bspwm files"
 
     # Install the dotfiles
-    for a in "bpwm" "sxhkd" "compton" "dunst" "polybar"; do
+    for a in "rofi" "bpwm" "sxhkd" "compton" "dunst" "polybar"; do
         [[ -d $HOME/.config/$a && ! -L $HOME/.config/$a ]] && mv $HOME/.config/$a $HOME/.config/$a.old
         ln -sfn $HOME/dotfiles/$a $HOME/.config/$a    
     done
