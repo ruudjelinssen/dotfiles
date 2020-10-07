@@ -28,6 +28,7 @@ pkill blurwal 2> /dev/null; (sleep 3;blurwal -m 1 --backend feh &> /tmp/.blurwal
 pkill compton 2> /dev/null; compton --config $HOME/.config/compton/compton.conf &
 pkill udiskie 2> /dev/null; udiskie -t &
 pkill nm-applet 2> /dev/null; nm-applet &
+pkill xautolock 2> /dev/null; xautolock -time 10 -locker '~/.bin/betterlockscreen -l blur' &
 pgrep nextcloud > /dev/null || nextcloud --background &
 
 # Kill and launch polybar

@@ -30,6 +30,7 @@ source $HOME/.config/nvim/plugin-config/coc.vim
 source $HOME/.config/nvim/plugin-config/fzf.vim
 source $HOME/.config/nvim/plugin-config/sneak.vim
 
+
 " TODO: fix for operator background on selected line
 hi! link Operator GruvboxFg1
 " }}}
