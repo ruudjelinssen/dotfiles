@@ -39,6 +39,7 @@ listview {
 element {
     border:  0;
     padding: 2px;
+    highlight: bold underline;
 }
 
 element.normal.normal {

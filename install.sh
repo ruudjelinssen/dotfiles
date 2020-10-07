@@ -5,6 +5,18 @@ if (( $EUID != 0 )); then
     SUDO='sudo'
 fi
 
+while [[ $# -gt 0 ]]; do
+    key="$1"
+    case $key in
+        --bspwm)
+            INSTALL_BSPWM=1
+            shift
+            ;;
+        *)
+            ;;
+    esac
+done
+
 installubuntu () {
     echo "Installing Ubuntu dependencies"
     $SUDO apt update
@@ -27,6 +39,11 @@ installfedora () {
     # Pip
     python3 -m pip install --user neovim
 
+    # install bspwm if needed
+    if [[ $INSTALL_BSPWM -eq "1" ]]; then
+        echo "Installing bspwm and dependencies"
+        $SUDO dnf install -y rofi bspwm sxhkd compton dunst polybar yad udiskie
+    fi
 }
 
 installdebian() {
@@ -36,6 +53,12 @@ installdebian() {
 
     # pip dependencies
     python3 -m pip install --user neovim
+
+    # install bspwm if needed
+    if [[ $INSTALL_BSPWM -eq "1" ]]; then
+        echo "Installing bspwm and dependencies"
+        $SUDO apt install -y rofi bspwm sxhkd compton dunst polybar yad udiskie
+    fi
 }
 
 installdeps () {

@@ -1,6 +1,6 @@
 configuration {
 	modi: "window,drun,ssh";
-/*	width: 50;*/
+	width: 30;
 /*	lines: 15;*/
 /*	columns: 1;*/
 	font: "Noto Sans Nerd Font 11";
@@ -22,7 +22,7 @@ configuration {
 	icon-theme: "Papirus-Dark";
 /*	drun-match-fields: "name,generic,exec,categories";*/
 /*	drun-show-actions: false;*/
-/*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
+	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
 /*	disable-history: false;*/
 /*	ignored-prefixes: "";*/
 /*	sort: false;*/
