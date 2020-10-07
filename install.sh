@@ -42,14 +42,15 @@ installfedora () {
     # install bspwm if needed
     if [[ $INSTALL_BSPWM -eq "1" ]]; then
         echo "Installing bspwm and dependencies"
-        $SUDO dnf install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh ImageMagick
+        $SUDO dnf install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh ImageMagick xautolock
     fi
 }
 
 installdebian() {
     echo "Installing Debian dependencies"
     $SUDO apt update
-    $SUDO apt install -y neovim tmux git python3 python python3-pip nodejs zsh yarn npm ripgrep
+    $SUDO apt install -y neovim tmux git python3 python python3-pip zsh yarn npm ripgrep snapd
+    $SUDO snap install --edge --classic nodejs
 
     # pip dependencies
     python3 -m pip install --user neovim
@@ -57,7 +58,7 @@ installdebian() {
     # install bspwm if needed
     if [[ $INSTALL_BSPWM -eq "1" ]]; then
         echo "Installing bspwm and dependencies"
-        $SUDO apt install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh imagemagick
+        $SUDO apt install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh imagemagick xautolock
     fi
 }
 
