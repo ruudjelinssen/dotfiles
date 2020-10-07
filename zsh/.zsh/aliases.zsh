@@ -43,6 +43,9 @@ alias tmux='TERM=screen-256color tmux'
 # SSH TERM setting
 alias ssh='TERM=xterm-256color ssh'
 
+# Lock screen
+alias lock='$HOME/.bin/betterlockscreen -l blur'
+
 # Send to my webserver for static files
 function webshare() {
     cp $1 ~/Nextcloud/webshare/

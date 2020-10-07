@@ -15,6 +15,9 @@ super + @space
 super + Escape
 	~/.config/bspwm/bspwmrc; notify-send "Config" "reloaded"
 
+super + x
+	~/.bin/betterlockscreen -l blur
+
 #
 # bspwm hotkeys
 #

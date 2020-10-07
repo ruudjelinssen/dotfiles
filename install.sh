@@ -42,7 +42,8 @@ installfedora () {
     # install bspwm if needed
     if [[ $INSTALL_BSPWM -eq "1" ]]; then
         echo "Installing bspwm and dependencies"
-        $SUDO dnf install -y rofi bspwm sxhkd compton dunst polybar yad udiskie
+        $SUDO dnf copr enable watersalesman/i3lock-color
+        $SUDO dnf install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh ImageMagick i3lock-color
     fi
 }
 
@@ -57,7 +58,7 @@ installdebian() {
     # install bspwm if needed
     if [[ $INSTALL_BSPWM -eq "1" ]]; then
         echo "Installing bspwm and dependencies"
-        $SUDO apt install -y rofi bspwm sxhkd compton dunst polybar yad udiskie
+        $SUDO apt install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh
     fi
 }
 
@@ -66,6 +67,11 @@ installdeps () {
     [[ $OS =~ "Ubuntu" ]] && installubuntu
     [[ $OS =~ "Fedora" ]] && installfedora
     [[ $OS =~ "Debian" ]] && installdebian
+
+    if [[ $INSTALL_BSPWM -eq "1" ]]; then
+        $SUDO python3 -m pip install blurwal
+        ln -sfn $HOME/dotfiles/betterlockscreenrc $HOME/.config/betterlockscreenrc
+    fi
 }
 
 installnvim () {
@@ -129,13 +135,6 @@ installbspwm () {
         [[ -d $HOME/.config/$a && ! -L $HOME/.config/$a ]] && mv $HOME/.config/$a $HOME/.config/$a.old
         ln -sfn $HOME/dotfiles/$a $HOME/.config/$a    
     done
-    # [[ -d $HOME/.config/sxhkd && ! -L $HOME/.config/sxhkd ]] && mv $HOME/.config/sxhkd $HOME/.config/sxhkd.old
-    # [[ -d $HOME/.config/compton && ! -L $HOME/.config/compton ]] && mv $HOME/.config/compton $HOME/.config/compton.old
-    # [[ -d $HOME/.config/dunst && ! -L $HOME/.config/dunst ]] && mv $HOME/.config/dunst $HOME/.config/dunst.old
-    # [[ -d $HOME/.config/dunst && ! -L $HOME/.config/dunst ]] && mv $HOME/.config/dunst $HOME/.config/dunst.old
-    # ln -sfn $HOME/dotfiles/sxhkd $HOME/.config/sxhkd
-    # ln -sfn $HOME/dotfiles/compton $HOME/.config/compton
-    # ln -sfn $HOME/dotfiles/dunst $HOME/.config/dunst
 
     echo "Finished installing bspwm"
 }
@@ -157,8 +156,20 @@ installdeps
 # Create .config folder if it does not exist
 [[ -d $HOME/.config ]] || mkdir $HOME/.config
 
+# Install bin files
+echo "Installing ~/.bin folder"
+[[ -d $HOME/.bin && ! -L $HOME/.bin ]] && mv $HOME/.bin $HOME/.bin.old
+ln -sfn $HOME/dotfiles/bin $HOME/.bin
+
+
 # Clone this repo if it does not exist
-[[ -d $HOME/dotfiles ]] || git clone https://github.com/ruudjelinssen/dotfiles $HOME/dotfiles
+if [[ -d $HOME/dotfiles ]]; then
+    cd ~/dotfiles
+    git pull
+    cd $OLDPWD
+else
+    git clone https://github.com/ruudjelinssen/dotfiles $HOME/dotfiles
+fi
 
 # Install neovim
 which nvim > /dev/null && installnvim || (echo "ERROR: Neovim is not installed"; exit 1)
