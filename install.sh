@@ -29,9 +29,20 @@ installfedora () {
 
 }
 
+installdebian() {
+    echo "Installing Debian dependencies"
+    $SUDO apt update
+    $SUDO apt install -y neovim tmux git python3 python python3-pip nodejs zsh yarn npm ripgrep
+
+    # pip dependencies
+    python3 -m pip install --user neovim
+}
+
 installdeps () {
-    [[  -n "$(uname -a | grep Ubuntu)" ]] && installubuntu
-    [[ `awk -F= '/^NAME/{print $2}' /etc/os-release` -eq "Fedora" ]] && installfedora
+    OS=`awk -F= '/^NAME/{print $2}' /etc/os-release | sed s/\"//g`
+    [[ $OS =~ "Ubuntu" ]] && installubuntu
+    [[ $OS =~ "Fedora" ]] && installfedora
+    [[ $OS =~ "Debian" ]] && installdebian
 }
 
 installnvim () {
