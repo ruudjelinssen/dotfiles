@@ -22,7 +22,7 @@ installubuntu () {
     $SUDO apt update
     $SUDO apt install -y software-properties-common
     $SUDO add-apt-repository -y ppa:neovim-ppa/stable
-    $SUDO apt install -y neovim tmux git python3 python python3-pip nodejs zsh yarn npm ripgrep
+    $SUDO apt install -y neovim tmux git python3 python python3-pip nodejs zsh yarn npm ripgrep fzf
 
     # Pip
     python3 -m pip install --user neovim
@@ -42,14 +42,14 @@ installfedora () {
     # install bspwm if needed
     if [[ $INSTALL_BSPWM -eq "1" ]]; then
         echo "Installing bspwm and dependencies"
-        $SUDO dnf install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh ImageMagick
+        $SUDO dnf install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh ImageMagick fzf
     fi
 }
 
 installdebian() {
     echo "Installing Debian dependencies"
     $SUDO apt update
-    $SUDO apt install -y neovim tmux git python3 python python3-pip nodejs zsh yarn npm ripgrep
+    $SUDO apt install -y neovim tmux git python3 python python3-pip nodejs zsh yarn npm ripgrep fzf
 
     # pip dependencies
     python3 -m pip install --user neovim
@@ -57,7 +57,13 @@ installdebian() {
     # install bspwm if needed
     if [[ $INSTALL_BSPWM -eq "1" ]]; then
         echo "Installing bspwm and dependencies"
-        $SUDO apt install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh imagemagick
+        $SUDO apt install -y rofi bspwm sxhkd compton dunst yad udiskie feh imagemagick cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev libjsoncpp-dev
+        if ! command -v polybar &> /dev/null; then
+            git clone https://github.com/jaagr/polybar.git /tmp/polybar
+            cd /tmp/polybar
+            ./build.sh
+            cd $OLDPWD
+        fi
     fi
 }
 
