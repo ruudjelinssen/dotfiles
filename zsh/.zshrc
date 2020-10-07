@@ -24,8 +24,11 @@ source /usr/bin/virtualenvwrapper.sh 2> /dev/null
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 COLORTERM=truecolor
+PURE_PROMPT_SYMBOL=$
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
+zstyle :prompt:pure:path color white
+zstyle :prompt:pure:prompt:success color blue
 prompt pure
 
 # Beam cursor
