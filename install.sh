@@ -43,10 +43,10 @@ installnvim () {
     ln -sfn $HOME/dotfiles/nvim/ $HOME/.config/nvim
 
     # Install plugins
-    nvim --headless +PlugInstall +qa
+    nvim --headless +PlugInstall +qa > /dev/null
 
     # Install coc extensions
-    nvim --headless +CocUpdateSync +qa
+    nvim --headless +CocUpdateSync +qa > /dev/null
 
     echo "Done installing neovim files"
 }
@@ -91,15 +91,19 @@ installbspwm () {
     echo "Installing bspwm files"
 
     # Install the dotfiles
-    [[ -d $HOME/.config/bspwm && ! -L $HOME/.config/bspwm ]] && mv $HOME/.config/bspwm $HOME/.config/bspwm.old
-    [[ -d $HOME/.config/sxhkd && ! -L $HOME/.config/sxhkd ]] && mv $HOME/.config/sxhkd $HOME/.config/sxhkd.old
-    [[ -d $HOME/.config/compton && ! -L $HOME/.config/compton ]] && mv $HOME/.config/compton $HOME/.config/compton.old
-    ln -sfn $HOME/dotfiles/bspwm $HOME/.config/bspwm    
-    ln -sfn $HOME/dotfiles/sxhkd $HOME/.config/sxhkd
-    ln -sfn $HOME/dotfiles/compton $HOME/.config/compton
+    for a in "bpwm" "sxhkd" "compton" "dunst" "polybar"; do
+        [[ -d $HOME/.config/$a && ! -L $HOME/.config/$a ]] && mv $HOME/.config/$a $HOME/.config/$a.old
+        ln -sfn $HOME/dotfiles/$a $HOME/.config/$a    
+    done
+    # [[ -d $HOME/.config/sxhkd && ! -L $HOME/.config/sxhkd ]] && mv $HOME/.config/sxhkd $HOME/.config/sxhkd.old
+    # [[ -d $HOME/.config/compton && ! -L $HOME/.config/compton ]] && mv $HOME/.config/compton $HOME/.config/compton.old
+    # [[ -d $HOME/.config/dunst && ! -L $HOME/.config/dunst ]] && mv $HOME/.config/dunst $HOME/.config/dunst.old
+    # [[ -d $HOME/.config/dunst && ! -L $HOME/.config/dunst ]] && mv $HOME/.config/dunst $HOME/.config/dunst.old
+    # ln -sfn $HOME/dotfiles/sxhkd $HOME/.config/sxhkd
+    # ln -sfn $HOME/dotfiles/compton $HOME/.config/compton
+    # ln -sfn $HOME/dotfiles/dunst $HOME/.config/dunst
 
-
-    echo "Finished installing the dotfiles"
+    echo "Finished installing bspwm"
 }
 
 base64 -d <<< cat << EOF

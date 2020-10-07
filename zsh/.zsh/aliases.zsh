@@ -40,6 +40,9 @@ alias whatsmyip='curl https://ipinfo.io/ip'
 # Tmux
 alias tmux='TERM=screen-256color tmux'
 
+# SSH TERM setting
+alias ssh='TERM=xterm-256color ssh'
+
 # Send to my webserver for static files
 function webshare() {
     cp $1 ~/Nextcloud/webshare/

@@ -11,9 +11,9 @@ super + Return
 super + @space
 	rofi -show combi
 
-# make sxhkd reload its configuration files:
+# make sxhkd reload all configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+	~/.config/bspwm/bspwmrc; notify-send "Config" "reloaded"
 
 #
 # bspwm hotkeys
@@ -120,3 +120,15 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#
+# Special keys
+# 
+XF86AudioRaiseVolume
+	$HOME/.config/sxhkd/bin/volume.sh up
+
+XF86AudioLowerVolume
+	$HOME/.config/sxhkd/bin/volume.sh down
+
+XF86AudioMute
+	$HOME/.config/sxhkd/bin/volume.sh mute
