@@ -87,6 +87,10 @@ element.alternate.active {
     text-color:       @alternate-active-foreground;
 }
 
+element-icon {
+    size: 2.2ch;
+}
+
 scrollbar {
     width:        4px;
     border:       0;
@@ -126,3 +130,4 @@ textbox-prompt-sep {
     text-color: @normal-foreground;
     margin:     0 0.3em 0 0;
 }
+

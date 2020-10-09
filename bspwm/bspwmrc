@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # ============ General ============
 bspc config border_width         2
 bspc config window_gap           5
@@ -13,6 +13,8 @@ bspc config presel_feedback_color   "#7c6f64"
 
 feh --bg-fill ~/dotfiles/wallpaper.jpg  &
 ~/.bin/betterlockscreen -u ~/dotfiles/wallpaper.jpg -b 1.0 &
+
+xset r rate 250 50
 
 # ============ Monitors ============
 if [[ -x $HOME/.config/bspwm/monitors ]]; then

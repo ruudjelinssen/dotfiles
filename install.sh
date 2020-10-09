@@ -50,7 +50,7 @@ installdebian() {
     echo "Installing Debian dependencies"
     $SUDO apt update
     $SUDO apt install -y neovim tmux git python3 python python3-pip zsh yarn npm ripgrep fzf snapd
-    $SUDO snap install --edge --classic nodejs
+    $SUDO snap install --edge --classic node
 
     # pip dependencies
     python3 -m pip install --user neovim
@@ -58,13 +58,8 @@ installdebian() {
     # install bspwm if needed
     if [[ $INSTALL_BSPWM -eq "1" ]]; then
         echo "Installing bspwm and dependencies"
-        $SUDO apt install -y rofi bspwm sxhkd compton dunst yad udiskie feh imagemagick xautolock cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev libjsoncpp-dev
-        if ! command -v polybar &> /dev/null; then
-            git clone https://github.com/jaagr/polybar.git /tmp/polybar
-            cd /tmp/polybar
-            ./build.sh
-            cd $OLDPWD
-        fi
+        $SUDO apt install -y rofi bspwm sxhkd compton dunst yad udiskie feh imagemagick xautolock
+        echo "[!] You might want to build the following from source: bspwm, sxhkd, rofi, alacritty"
     fi
 }
 
@@ -137,7 +132,7 @@ installbspwm () {
     echo "Installing bspwm files"
 
     # Install the dotfiles
-    for a in "rofi" "bpwm" "sxhkd" "compton" "dunst" "polybar"; do
+    for a in "rofi" "bspwm" "sxhkd" "compton" "dunst" "polybar"; do
         [[ -d $HOME/.config/$a && ! -L $HOME/.config/$a ]] && mv $HOME/.config/$a $HOME/.config/$a.old
         ln -sfn $HOME/dotfiles/$a $HOME/.config/$a    
     done
