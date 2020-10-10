@@ -24,7 +24,7 @@ else
 fi
 
 # ============ Services ============
-pkill sxhkd 2> /dev/null; sxhkd &
+pkill sxhkd 2> /dev/null; sxhkd -m 1 &
 pkill dunst 2> /dev/null; dunst &
 pkill blurwal 2> /dev/null; (sleep 3;blurwal -m 1 --backend feh &> /tmp/.blurwal ) &
 pkill compton 2> /dev/null; compton --config $HOME/.config/compton/compton.conf &

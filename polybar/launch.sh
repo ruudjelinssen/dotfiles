@@ -6,11 +6,9 @@ pkill polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch Polybar, using default config location ~/.config/polybar/config
-for screen in $(bspc query -M --names)
-do
-    if grep -q "\[bar/$screen\]" "$HOME/.config/polybar/config"; then
-        polybar $screen &
-    fi
-done
+host=$(hostname -s)
+if [[ $host -eq "bakkie" ]]; then
+    WLAN_IF=wlp6s0 MONITOR=eDP1 polybar main-laptop &
+fi
 
 echo "Polybar launched..."

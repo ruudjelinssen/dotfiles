@@ -16,7 +16,7 @@ super + Escape
 	~/.config/bspwm/bspwmrc; notify-send "Config" "reloaded"
 
 super + x
-	$HOME/.bin/betterlockscreen -l blur &
+	$HOME/.bin/betterlockscreen -l blur --off 10 &
 
 #
 # bspwm hotkeys
@@ -127,11 +127,11 @@ super + {Left,Down,Up,Right}
 #
 # Special keys
 # 
-XF86AudioRaiseVolume
-	$HOME/.config/sxhkd/bin/volume.sh up
+XF86MonBrightness{Up,Down}
+	$HOME/.config/sxhkd/bin/brightness.sh {up,down}
 
-XF86AudioLowerVolume
-	$HOME/.config/sxhkd/bin/volume.sh down
+XF86Audio{Raise,Lower}Volume
+	$HOME/.config/sxhkd/bin/volume.sh {up,down}
 
 XF86AudioMute
 	$HOME/.config/sxhkd/bin/volume.sh mute
