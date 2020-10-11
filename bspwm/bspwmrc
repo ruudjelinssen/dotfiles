@@ -34,9 +34,10 @@ pkill xautolock 2> /dev/null; xautolock -time 10 -locker '~/.bin/betterlockscree
 pgrep nextcloud > /dev/null || nextcloud --background &
 
 # Kill and launch polybar
-$HOME/.config/polybar/launch.sh
+$HOME/.config/polybar/launch.sh &
 
 # ============ Rules ============
 bspc rule -a Yad state=floating
 bspc rule -a Nm-connection-editor state=floating
 bspc rule -a Steam state=floating follow=on
+bspc rule -a Blueman-manager state=floating follow=on

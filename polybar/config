@@ -101,7 +101,7 @@ tray-position = none
 ;==========================================================
 [bar/main-laptop]
 inherit = bar/main
-modules-right = tmux updates-dnf wireguard wlan pulseaudio battery date
+modules-right = tmux updates-dnf wireguard bluetooth wlan pulseaudio battery date
 tray-position = none
 
 ;===============================================================================
@@ -366,6 +366,15 @@ animation-packetloss-1 = 直
 animation-packetloss-1-foreground = ${colors.foreground}
 ; Framerate in milliseconds
 animation-packetloss-framerate = 500
+
+;==========================================================
+;                   module/bluetooth
+;==========================================================
+[module/bluetooth]
+type = custom/script
+exec = ~/.config/polybar/scripts/bluetooth.sh
+click-left = blueman-manager
+interval = 1
 
 
 ;==========================================================
