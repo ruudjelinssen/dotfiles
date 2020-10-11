@@ -42,7 +42,7 @@ installfedora () {
     # install bspwm if needed
     if [[ $INSTALL_BSPWM -eq "1" ]]; then
         echo "Installing bspwm and dependencies"
-        $SUDO dnf install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh ImageMagick fzf xautolock lxappearance xbacklight
+        $SUDO dnf install -y rofi bspwm sxhkd compton dunst polybar yad udiskie feh ImageMagick fzf xautolock lxappearance xbacklight xdotool
     fi
 }
 

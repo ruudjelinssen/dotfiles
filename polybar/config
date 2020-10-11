@@ -101,7 +101,7 @@ tray-position = none
 ;==========================================================
 [bar/main-laptop]
 inherit = bar/main
-modules-right = wlan pulseaudio battery date
+modules-right = tmux updates-dnf wireguard wlan pulseaudio battery date
 tray-position = none
 
 ;===============================================================================
@@ -146,7 +146,7 @@ interval = 1.0
 date = %d-%m-%Y%
 time = %H:%M
 
-label = %{A1:~/.config/polybar/scripts/popup-calendar.sh --popup &:}%{T2} %{T-}%time%%{A}
+label = %{A1:$HOME/.config/polybar/scripts/popup-calendar.sh --popup &:}%{T2} %{T-}%time%%{A}
 click-left = ~/.config/polybar/scripts/popup-calendar.sh --popup &
 
 
@@ -316,17 +316,17 @@ unknown-as-up = true
 ; Available tags:
 ;   <label-connected> (default)
 ;   <ramp-signal>
-format-connected = "%{A1:$HOME/.config/polybar/scripts/nmcli-rofi:}<ramp-signal> <label-connected>%{A}"
+format-connected = "%{A1:$HOME/.config/polybar/scripts/nmcli-rofi &:}<ramp-signal> <label-connected>%{A}"
 
 ; Available tags:
 ;   <label-disconnected> (default)
-format-disconnected = "%{A1:$HOME/.config/polybar/scripts/nmcli-rofi:}<label-disconnected>%{A}"
+format-disconnected = %{A1:$HOME/.config/polybar/scripts/nmcli-rofi &:}<label-disconnected>%{A}
 
 ; Available tags:
 ;   <label-connected> (default)
 ;   <label-packetloss>
 ;   <animation-packetloss>
-format-packetloss = "%{A1:$HOME/.config/polybar/scripts/nmcli-rofi:}<animation-packetloss> <label-packetloss>%{A}"
+format-packetloss = "%{A1:$HOME/.config/polybar/scripts/nmcli-rofi &:}<animation-packetloss> <label-packetloss>%{A}"
 
 ; All labels support the following tokens:
 ;   %ifname%    [wireless+wired]
@@ -343,7 +343,7 @@ label-connected = " %essid%"
 label-connected-foreground = ${colors.foreground}
 
 ; Default: (none)
-label-disconnected = 睊
+label-disconnected = %{F#4e4e4e}睊%{F-}
 label-disconnected-foreground = ${colors.foreground}
 
 ; Default: (none)
@@ -367,4 +367,31 @@ animation-packetloss-1-foreground = ${colors.foreground}
 ; Framerate in milliseconds
 animation-packetloss-framerate = 500
 
+
+;==========================================================
+;                   module/wireguard
+;==========================================================
+[module/wireguard]
+type = custom/script
+exec = ~/.config/polybar/scripts/vpn-wireguard-wg.sh
+interval = 1
+click-left = ~/.config/polybar/scripts/vpn-wireguard-wg.sh --toggle &
+
+
+;==========================================================
+;                   module/tmux
+;==========================================================
+[module/tmux]
+type = custom/script
+exec = ~/.config/polybar/scripts/info-tmux-sessions.sh
+interval = 1
+
+
+;==========================================================
+;                   module/updates-dnf
+;==========================================================
+[module/updates-dnf]
+type = custom/script
+exec = ~/.config/polybar/scripts/updates-dnf.sh
+interval = 600
 ; vim:ft=dosini
