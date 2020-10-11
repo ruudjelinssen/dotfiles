@@ -41,11 +41,11 @@ function send_notification {
 case $1 in
     up)
 		# Up the brightness (+ 5%)
-		xbacklight -inc 5
+		xbacklight -inc 5 -steps 1 &
 		send_notification
 		;;
     down)
-		xbacklight -dec 5
+		xbacklight -dec 5 -steps 1
 		send_notification
 		;;
 esac

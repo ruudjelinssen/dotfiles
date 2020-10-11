@@ -316,17 +316,17 @@ unknown-as-up = true
 ; Available tags:
 ;   <label-connected> (default)
 ;   <ramp-signal>
-format-connected = "%{A1:nm-connection-editor:}<ramp-signal> <label-connected>%{A}"
+format-connected = "%{A1:$HOME/.config/polybar/scripts/nmcli-rofi:}<ramp-signal> <label-connected>%{A}"
 
 ; Available tags:
 ;   <label-disconnected> (default)
-format-disconnected = "%{A1:nm-connection-editor:}<label-disconnected>%{A}"
+format-disconnected = "%{A1:$HOME/.config/polybar/scripts/nmcli-rofi:}<label-disconnected>%{A}"
 
 ; Available tags:
 ;   <label-connected> (default)
 ;   <label-packetloss>
 ;   <animation-packetloss>
-format-packetloss = "%{A1:nm-connection-editor:}<animation-packetloss> <label-packetloss>%{A}"
+format-packetloss = "%{A1:$HOME/.config/polybar/scripts/nmcli-rofi:}<animation-packetloss> <label-packetloss>%{A}"
 
 ; All labels support the following tokens:
 ;   %ifname%    [wireless+wired]
