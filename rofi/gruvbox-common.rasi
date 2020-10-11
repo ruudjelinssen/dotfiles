@@ -38,7 +38,7 @@ listview {
 
 element {
     border:  0;
-    padding: 2px;
+    padding: 6px;
     highlight: bold underline;
 }
 
@@ -126,7 +126,7 @@ button.selected {
 
 textbox-prompt-sep {
     expand:     false;
-    str:        ":";
+    str:        "";
     text-color: @normal-foreground;
     margin:     0 0.3em 0 0;
 }

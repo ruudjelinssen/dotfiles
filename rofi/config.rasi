@@ -1,6 +1,6 @@
 configuration {
 	modi: "window,drun,ssh";
-	width: 30;
+	width: 45;
 /*	lines: 15;*/
 /*	columns: 1;*/
 	font: "Noto Sans Nerd Font 11";
