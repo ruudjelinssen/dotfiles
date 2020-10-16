@@ -13,5 +13,9 @@ case $(hostname -s) in
     fedora-laptop)
         WLAN_IF=wlp2s0 MONITOR=eDP1 polybar main-laptop &
         ;;
+    fedora-desktop)
+        MONITOR=DP-0 polybar main &
+        MONITOR=DVI-D-0 polybar secondary &
+        ;;
 esac
 echo "Polybar launched..."

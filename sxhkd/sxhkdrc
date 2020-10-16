@@ -6,6 +6,10 @@
 super + Return
 	alacritty
 
+# browser
+super + i
+	firefox
+
 # program launcher
 # super + @space
 super + @space

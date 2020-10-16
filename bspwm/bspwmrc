@@ -17,11 +17,23 @@ feh --bg-fill ~/dotfiles/wallpaper.jpg  &
 xset r rate 250 50
 
 # ============ Monitors ============
-if [[ -x $HOME/.config/bspwm/monitors ]]; then
-    source $HOME/.config/bspwm/monitors
-else
-    bspc monitor -d 1 2 3 4 5 6 7 8 9 0
-fi
+case $(hostname -s) in
+    fedora-desktop)
+        bspc monitor DP-0 -d 1 2 3 4 mail
+        bspc monitor DVI-D-0 -d 6 7 8 9 discord
+        ;;
+    *)
+        bspc monitor -d 1 2 3 4 5 6 7 8 9 0
+        ;;
+esac
+
+# ============ Rules ============
+bspc rule -a Yad state=floating
+bspc rule -a Nm-connection-editor state=floating
+bspc rule -a Steam state=floating follow=on
+bspc rule -a Blueman-manager state=floating follow=on
+bspc rule -a Thunderbird desktop=mail
+bspc rule -a discord desktop=discord
 
 # ============ Services ============
 pkill sxhkd 2> /dev/null; sxhkd -m 1 &
@@ -31,13 +43,13 @@ pkill compton 2> /dev/null; compton --config $HOME/.config/compton/compton.conf 
 pkill udiskie 2> /dev/null; udiskie -t &
 pkill nm-applet 2> /dev/null; nm-applet &
 pkill xautolock 2> /dev/null; xautolock -time 10 -locker '~/.bin/betterlockscreen -l blur' &
-pgrep nextcloud > /dev/null || nextcloud --background &
+pgrep nextcloud > /dev/null || nextcloud --background 2> /dev/null &
+pgrep thunderbird > /dev/null || thunderbird 2> /dev/null &
+pgrep discord > /dev/null || discord 2> /dev/null &
+
+# So we dont switch to this desktop on startup
+bspc rule -a Thunderbird desktop=mail follow=on
+bspc rule -a discord desktop=discord follow=on
 
 # Kill and launch polybar
 $HOME/.config/polybar/launch.sh &
-
-# ============ Rules ============
-bspc rule -a Yad state=floating
-bspc rule -a Nm-connection-editor state=floating
-bspc rule -a Steam state=floating follow=on
-bspc rule -a Blueman-manager state=floating follow=on
