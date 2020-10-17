@@ -15,6 +15,7 @@ feh --bg-fill ~/dotfiles/wallpaper.jpg  &
 ~/.bin/betterlockscreen -u ~/dotfiles/wallpaper.jpg -b 1.0 &
 
 xset r rate 250 50
+xsetroot -cursor_name left_ptr
 
 # ============ Monitors ============
 case $(hostname -s) in

@@ -13,7 +13,7 @@ super + i
 # program launcher
 # super + @space
 super + @space
-	rofi -show combi
+	rofi -show combi -theme ~/.config/rofi/themes/gruvbox-dark.rasi
 
 # make sxhkd reload all configuration files:
 super + Escape
