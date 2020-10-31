@@ -54,7 +54,7 @@ foreground = ${colors.foreground}
 line-size = 0
 line-color = #f00
 
-border-size = 5
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
@@ -102,7 +102,7 @@ tray-position = none
 ;==========================================================
 [bar/main-laptop]
 inherit = bar/main
-modules-right = tmux updates-dnf wireguard bluetooth wlan pulseaudio battery date
+modules-right = tmux updates-dnf libvirt wireguard bluetooth wlan pulseaudio battery date
 tray-position = none
 
 ;===============================================================================
@@ -398,6 +398,14 @@ exec = ~/.config/polybar/scripts/vpn-wireguard-wg.sh
 interval = 1
 click-left = ~/.config/polybar/scripts/vpn-wireguard-wg.sh --toggle &
 
+
+;==========================================================
+;                   module/libvirt
+;==========================================================
+[module/libvirt]
+type = custom/script
+exec = ~/.config/polybar/scripts/vms.sh
+interval = 1
 
 ;==========================================================
 ;                   module/tmux
