@@ -14,20 +14,20 @@ config="/etc/wg/wg0.conf"
 config_name=$(basename "${config%.*}")
 
 case "$1" in
---toggle)
-    if [ "$(connection_status)" = "1" ]; then
-        sudo wg-quick down "$config_name" 2>/dev/null
-    else
-        sudo wg-quick up "$config_name" 2>/dev/null
-    fi
-    ;;
-*)
-    if [ "$(connection_status)" = "1" ]; then
-        echo "  $config_name"
-    elif [ "$(connection_status)" = "3" ]; then
-        echo "#3 Config not found!"
-    else
-        echo "%{F#4e4e4e}輦  $config_name%{F-}"
-    fi
-    ;;
+    --toggle)
+        if [ "$(connection_status)" = "1" ]; then
+            sudo wg-quick down "$config_name" 2>/dev/null
+        else
+            sudo wg-quick up "$config_name" 2>/dev/null
+        fi
+        ;;
+    *)
+        if [ "$(connection_status)" = "1" ]; then
+            echo "聯"
+        elif [ "$(connection_status)" = "3" ]; then
+            echo "#3 Config not found!"
+        else
+            echo "輦"
+        fi
+        ;;
 esac
