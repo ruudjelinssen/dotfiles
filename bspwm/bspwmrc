@@ -25,6 +25,9 @@ case $(hostname -s) in
         bspc monitor DP-0 -d 1 2 3 4 mail
         bspc monitor DVI-D-0 -d 6 7 8 9 discord
         ;;
+    fedora-laptop)
+        bspc monitor -d 1 2 3 4 5 6 7 8 mail discord
+        ;;
     *)
         bspc monitor -d 1 2 3 4 5 6 7 8 9 0
         ;;

@@ -12,6 +12,9 @@ export ZSH=$HOME/.oh-my-zsh
 # Default editor
 export EDITOR=nvim
 
+# Terminal
+export TERMINAL=alacritty
+
 # Python and virtualenv
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
@@ -140,3 +143,6 @@ which kubectl &> /dev/null && source <(kubectl completion zsh)
 # Dont ask for ssh/git credentials through third party windows
 [ -n "$SSH_CONNECTION" ] && unset SSH_ASKPASS
 export GIT_ASKPASS=
+
+# Libvirt 
+export LIBVIRT_DEFAULT_URI="qemu:///system"
