@@ -102,7 +102,7 @@ tray-position = none
 ;==========================================================
 [bar/main-laptop]
 inherit = bar/main
-modules-right = tmux updates-dnf libvirt wireguard bluetooth autolock wlan pulseaudio battery date
+modules-right = tmux updates-dnf libvirt wireguard bluetooth autolock sep wlan sep pulseaudio battery sep date
 tray-position = none
 
 ;===============================================================================
