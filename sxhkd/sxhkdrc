@@ -10,6 +10,10 @@ super + Return
 super + i
 	firefox
 
+# libvirt
+super + v
+	~/.config/sxhkd/bin/start-vm.sh
+
 # program launcher
 # super + @space
 super + @space
