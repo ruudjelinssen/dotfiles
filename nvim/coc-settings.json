@@ -1,4 +1,6 @@
 {
+    "python.venvPath": "~/.virtualenvs",
+    "python.linting.pylintArgs": ["--extension-pkg-whitelist=pygame"],
     "explorer.icon.enableNerdfont": true,
     "coc.preferences.formatOnSaveFiletypes": [
         "python",
