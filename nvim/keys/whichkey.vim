@@ -33,7 +33,7 @@ let g:which_key_map['9'] = 'which_key_ignore'
 let g:which_key_map['.'] = [ '<C-^>'                            , 'last buffer' ]
 let g:which_key_map['l'] = [ ':bnext'                           , 'next buffer' ]
 let g:which_key_map['h'] = [ ':bprevious'                       , 'previous buffer' ]
-let g:which_key_map['d'] = [ ':bd'                              , 'close buffer' ]
+let g:which_key_map['q'] = [ ':bd'                              , 'close buffer' ]
 let g:which_key_map['v'] = [ ':e! ~/.config/nvim/init.vim'      , 'edit vimrc' ]
 let g:which_key_map['f'] = [ ':Files'                           , 'search files' ]
 
@@ -45,6 +45,21 @@ let g:which_key_map.s = {
     \ 'c': [':CocFzfList commands',     'commands'],
     \ 'b': [':Buffers',                 'buffers'],
     \}
+
+" Vimspector
+let g:which_key_map.d = {
+    \ 'name': '+debug',
+    \ 'd': [':call vimspector#Launch()',        'run'],
+    \ 'e': [':call vimspector#Reset()',         'end'],
+    \ 'l': ['<Plug>VimspectorStepInto',         'step into'],
+    \ 'j': ['<Plug>VimspectorStepOver',         'step over'],
+    \ 'k': ['<Plug>VimspectorStepOut',          'step out'],
+    \ 'c': [':call vimspector#Continue()',      'continue'],
+    \ 'b': ['<Plug>VimspectorToggleBreakpoint', 'toggle breakpoint'],
+    \ '_': ['vimspector#ClearBreakpoints()',    'clear breakpoints'],
+    \ 'r': ['<Plug>VimspectorRestart',         'restart'],
+    \ 'v': ['<Plug>VimspectorRunToCursor',     'run to cursor'],
+    \ }
 
 " Register which key map
 call which_key#register(',', "g:which_key_map")

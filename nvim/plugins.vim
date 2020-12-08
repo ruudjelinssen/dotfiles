@@ -49,5 +49,8 @@ Plug 'ryanoasis/vim-devicons'
 " Quick jump to search
 Plug 'justinmk/vim-sneak'
 
+" Vimspector
+Plug 'puremourning/vimspector'
+
 call plug#end()                             " End the plugins list
 " }}}
